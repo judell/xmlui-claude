@@ -217,6 +217,38 @@ If port 8080 is already in use, `xmlui run` will pick a random port automaticall
 
 ---
 
+## Step 7: Add project-level CLAUDE.md
+
+Check if `<project-dir>/.claude/CLAUDE.md` exists. If not, create it. If it exists, append to it.
+
+Write the following content (using the Write tool for new files, or Edit tool to append):
+
+```markdown
+# XMLUI Project
+
+This is an XMLUI project. When answering questions about components, layouts, events, theming, or patterns:
+
+1. Use the XMLUI MCP tools — do not guess or search the web:
+   - `xmlui_component_docs` for component API documentation
+   - `xmlui_search` for searching across docs, source, and examples
+   - `xmlui_examples` for working code examples
+   - `xmlui_list_howto` / `xmlui_search_howto` for how-to guides
+
+2. Cite the documentation URLs returned by these tools.
+
+3. If the tools don't have the answer, say so.
+
+Tracing is enabled. The user can export traces from the Inspector (magnifying glass icon) for you to analyze.
+```
+
+Also create `<project-dir>/.claude/` directory if it doesn't exist:
+
+```bash
+mkdir -p <project-dir>/.claude
+```
+
+---
+
 ## Final message
 
 Once all steps have completed, tell the user:
@@ -226,6 +258,7 @@ Once all steps have completed, tell the user:
 > - The XMLUI MCP server (gives Claude access to component docs, examples, and how-tos)
 > - Tracing enabled with the Inspector (click the magnifying glass icon)
 > - A running dev server
+> - A project CLAUDE.md that steers Claude toward using the XMLUI MCP tools
 >
 > Try interacting with your app in the browser, then open the Inspector to see what happened. You can also ask Claude to look at traces to help diagnose issues.
 
