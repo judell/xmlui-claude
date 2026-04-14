@@ -223,8 +223,6 @@ This could be improved if the install script ran automatically as a post-install
 
 ### Gap analysis: Chuck's 40-minute setup vs the skill
 
-Reference: https://gist.github.com/judell/69e7c4cd2c6f895ffa5753120f49bf49
-
 Chuck's setup pain points mapped to skill coverage:
 
 | Chuck's step (~time) | Original skill | Expanded skill |
