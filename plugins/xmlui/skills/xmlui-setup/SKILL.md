@@ -33,16 +33,13 @@ Do not proceed until preflight passes.
 
 ## Step 2: Install the XMLUI CLI
 
-Detect the platform first to know which binary name to check:
-
-- macOS / Linux: `xmlui`
-- Windows: `xmlui.exe`
+The CLI binary is managed by the plugin and installed to the plugin's data directory. It does not need to be on the user's PATH.
 
 Check if already installed:
 
 ```bash
-command -v xmlui       # macOS / Linux
-command -v xmlui.exe   # Windows
+test -x "${CLAUDE_PLUGIN_DATA}/bin/xmlui" && echo "found" || echo "not found"    # macOS / Linux
+test -x "${CLAUDE_PLUGIN_DATA}/bin/xmlui.exe" && echo "found" || echo "not found" # Windows
 ```
 
 If found, skip to Step 3.
@@ -50,57 +47,24 @@ If found, skip to Step 3.
 If not found, run:
 
 ```bash
-"${CLAUDE_SKILL_DIR}/scripts/install-cli.sh"
+CLAUDE_PLUGIN_DATA="${CLAUDE_PLUGIN_DATA}" "${CLAUDE_SKILL_DIR}/scripts/install-cli.sh"
 ```
 
-If the script fails, install manually based on the user's platform:
-
-| Platform    | Command                                                                                                                          |
-| ----------- | -------------------------------------------------------------------------------------------------------------------------------- |
-| Linux x64   | `curl -fsSL https://github.com/xmlui-org/xmlui-cli/releases/download/latest/xmlui-linux-x64.tar.gz \| tar -xz -C ~/.local/bin`   |
-| macOS arm64 | `curl -fsSL https://github.com/xmlui-org/xmlui-cli/releases/download/latest/xmlui-macos-arm64.tar.gz \| tar -xz -C ~/.local/bin` |
-| macOS Intel | `curl -fsSL https://github.com/xmlui-org/xmlui-cli/releases/download/latest/xmlui-macos-intel.tar.gz \| tar -xz -C ~/.local/bin` |
-
-After manual install:
-
-```bash
-chmod +x ~/.local/bin/xmlui
-export PATH="$HOME/.local/bin:$PATH"
-```
-
-On macOS, if the binary is blocked by quarantine:
-
-```bash
-xattr -d com.apple.quarantine ~/.local/bin/xmlui
-```
-
-Verify with `xmlui --help` before continuing.
+Verify with `"${CLAUDE_PLUGIN_DATA}/bin/xmlui" --help` before continuing.
 
 ---
 
-## Step 3: Configure the MCP server
+## Step 3: MCP server (automatic)
 
-First, check what MCP servers are already registered:
+The MCP server is configured automatically via the plugin's `.mcp.json` — no manual setup needed. Skip to Step 4.
+
+If the user reports that XMLUI MCP tools are not available, verify the plugin is installed:
 
 ```bash
-claude mcp list
+claude plugin list
 ```
 
-If the output already includes a line for `xmlui`, this step is done — skip to Step 4.
-
-If `xmlui` is not listed, add it. The binary name differs by platform:
-
-**macOS / Linux:**
-```bash
-claude mcp add xmlui -- xmlui mcp
-```
-
-**Windows (PowerShell or Git Bash):**
-```bash
-claude mcp add xmlui -- xmlui.exe mcp
-```
-
-After adding, verify with `claude mcp list` again — the output should now include a line for `xmlui`.
+If `xmlui@xmlui-claude` is listed, the MCP server should be active after a Claude Code restart.
 
 If `claude` is not found, the Claude Code CLI is not on PATH. Ask the user to verify `claude` is accessible and try again.
 

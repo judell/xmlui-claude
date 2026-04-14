@@ -1,7 +1,7 @@
 {
   "mcpServers": {
     "xmlui": {
-      "command": "xmlui",
+      "command": "${CLAUDE_PLUGIN_DATA}/bin/xmlui",
       "args": ["mcp"]
     }
   }

@@ -39,7 +39,9 @@ fi
 DOWNLOAD_URL="$(select_download_url)"
 CLI_BINARY_NAME="$(select_binary_name)"
 
-if [[ "${PLATFORM_OS}" == "win" ]]; then
+if [[ -n "${CLAUDE_PLUGIN_DATA:-}" ]]; then
+  INSTALL_DIR="${CLAUDE_PLUGIN_DATA}/bin"
+elif [[ "${PLATFORM_OS}" == "win" ]]; then
   INSTALL_DIR="${XMLUI_CLI_INSTALL_DIR:-${HOME}/bin}"
 else
   INSTALL_DIR="${XMLUI_CLI_INSTALL_DIR:-${HOME}/.local/bin}"
@@ -84,11 +86,15 @@ if [[ "${PLATFORM_OS}" == "darwin" ]] && command -v xattr >/dev/null 2>&1; then
   fi
 fi
 
-ensure_path_export "${INSTALL_DIR}"
-
 log "Installed: ${INSTALL_DIR}/${CLI_BINARY_NAME}"
-if command -v "${CLI_BINARY_NAME}" >/dev/null 2>&1; then
-  log "CLI is available on PATH"
+
+if [[ -n "${CLAUDE_PLUGIN_DATA:-}" ]]; then
+  log "Binary managed by the plugin at ${INSTALL_DIR}/${CLI_BINARY_NAME}"
 else
-  warn "CLI is not yet in current shell PATH. Start a new terminal tab."
+  ensure_path_export "${INSTALL_DIR}"
+  if command -v "${CLI_BINARY_NAME}" >/dev/null 2>&1; then
+    log "CLI is available on PATH"
+  else
+    warn "CLI is not yet in current shell PATH. Start a new terminal tab."
+  fi
 fi
