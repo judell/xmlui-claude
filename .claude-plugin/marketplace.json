@@ -1,0 +1,18 @@
+{
+  "name": "xmlui-claude",
+  "owner": {
+    "name": "XMLUI"
+  },
+  "metadata": {
+    "description": "XMLUI plugins for Claude Code"
+  },
+  "plugins": [
+    {
+      "name": "xmlui",
+      "source": "./plugins/xmlui",
+      "description": "XMLUI development environment setup — installs the CLI, configures the MCP server, and scaffolds projects",
+      "version": "1.0.0",
+      "tags": ["xmlui", "setup", "mcp"]
+    }
+  ]
+}
