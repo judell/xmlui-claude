@@ -11,11 +11,23 @@ If you've installed the xmlui plugin before, remove it cleanly:
 /plugin marketplace remove xmlui-claude
 ```
 
-Then delete the cached plugin data (the CLI binary and any state):
+Then delete the cached plugin data, directories, and registry entries:
 
 ```bash
 rm -rf ~/.claude/plugins/data/xmlui-xmlui-claude
 rm -rf ~/.claude/plugins/cache/xmlui-claude
+rm -rf ~/.claude/plugins/marketplaces/xmlui-claude
+rm -rf ~/.claude/plugins/marketplaces/xmlui-org-xmlui-claude
+```
+
+Also clear the registry files so the plugin system doesn't re-sync stale entries:
+
+```bash
+echo '{}' > ~/.claude/plugins/known_marketplaces.json
+```
+
+```bash
+echo '{"version":2,"plugins":{}}' > ~/.claude/plugins/installed_plugins.json
 ```
 
 Restart Claude Code.
