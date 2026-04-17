@@ -1,15 +1,15 @@
 ---
 name: xmlui-setup
-description: Set up a complete XMLUI development environment. Use when the user wants to start XMLUI development, install the XMLUI CLI, configure the MCP server, or create a new XMLUI project.
+description: Install the XMLUI CLI, configure the MCP server, download the xmlui-weather app, configure the Inspector, and start the dev server.
 disable-model-invocation: true
 allowed-tools: Bash, Read, Edit, Write
 ---
 
 # XMLUI Development Environment Setup
 
-Your goal is to set up a complete XMLUI development environment for the user. Work through the steps below in order. At each step, run the relevant script yourself — do not ask the user to copy-paste commands unless a step explicitly requires their input.
+`xmlui-setup` installs the XMLUI CLI, configures the MCP server, downloads the `xmlui-weather` app, configures the app to use the XMLUI Inspector for debugging, and starts a local webserver to run the app.
 
-Steps 1 and 2 use scripts at `${CLAUDE_SKILL_DIR}/scripts/`.
+Run every step automatically — do not ask the user for confirmation between steps.
 
 ---
 
@@ -21,19 +21,11 @@ Run:
 "${CLAUDE_SKILL_DIR}/scripts/preflight.sh"
 ```
 
-If it fails, diagnose the missing dependency and tell the user what to install. Common issues:
-
-- `curl` missing: install via system package manager
-- `claude` missing: Claude Code CLI is not installed or not on PATH
-- `tar`/`unzip` missing: install via system package manager
-
-Do not proceed until preflight passes.
+If it fails, tell the user what to install and stop. Do not proceed until preflight passes.
 
 ---
 
 ## Step 2: Install the XMLUI CLI
-
-The CLI binary is managed by the plugin and installed to the plugin's data directory. It does not need to be on the user's PATH.
 
 Check if already installed:
 
@@ -54,21 +46,15 @@ Verify with `"${CLAUDE_PLUGIN_DATA}/bin/xmlui" --help` before continuing.
 
 ---
 
-## Step 3: MCP server (automatic)
+## Step 3: MCP server
 
-The MCP server is configured automatically via the plugin's `.mcp.json` — no manual setup needed. Skip to Step 4.
+The MCP server is configured automatically via the plugin's `.mcp.json` — no manual setup needed.
 
-If the user reports that XMLUI MCP tools are not available, verify the plugin is installed:
-
-```bash
-claude plugin list
-```
-
-If `xmlui@xmlui-claude` is listed, the MCP server should be active after a Claude Code restart.
+If the CLI was just installed in this session (Step 2), note that a Claude Code restart will be needed at the end for the MCP server to become active.
 
 ---
 
-## Step 4: Create the weather app
+## Step 4: Download the weather app
 
 Check if `xmlui-weather` already exists in the current directory:
 
@@ -84,32 +70,17 @@ Run:
 "${CLAUDE_PLUGIN_DATA}/bin/xmlui" new xmlui-weather --output xmlui-weather
 ```
 
-Then proceed to **Step 5** to add tracing.
-
 ---
 
-## Step 5: Add tracing
+## Step 5: Configure the Inspector
 
-Before making any changes, explain to the user what tracing is and what it involves:
-
-> **Tracing lets you (and Claude) see what your app is doing at runtime — API calls, state changes, handler timing.** It requires four things:
->
-> 1. **`xsVerbose: true` in config.json** — turns on trace collection in the XMLUI engine
-> 2. **`xs-diff.html`** — the trace viewer UI, displayed when you click the Inspector icon
-> 3. **`xmlui-parser.es.js`** — the trace parser, used by the viewer to process raw trace data (must be in the same directory as xs-diff.html)
-> 4. **`<Inspector />`** — an XMLUI component that adds a magnifying glass icon to your app header; clicking it opens the trace viewer
->
-> **Optional:** `xs-trace.js` lets you add custom app-level tracing — timing wrappers (`xsTrace`) and semantic events (`xsTraceEvent`). Not needed to get started but useful as your app grows. Want me to include it?
->
-> All trace-tools files come from the `xmlui-org/trace-tools` repo on GitHub. Shall I set this up?
-
-Wait for the user to confirm before proceeding. Note whether they want `xs-trace.js`.
+The Inspector requires: `xsVerbose: true` in config.json, the trace viewer files (`xs-diff.html` and `xmlui-parser.es.js`), and the `<Inspector />` component in Main.xmlui.
 
 ### 5a: Enable tracing in config.json
 
 Read the project's `config.json`.
 
-**If it doesn't exist**, create it with the Write tool:
+**If it doesn't exist**, create it:
 
 ```json
 {
@@ -120,18 +91,9 @@ Read the project's `config.json`.
 }
 ```
 
-**If it exists**, read it and check for `xsVerbose` in `appGlobals`:
-- If already present, tell the user and skip.
-- If `appGlobals` exists but has no `xsVerbose`, use the Edit tool to add `"xsVerbose": true` and `"xsVerboseLogMax": 200` to the existing `appGlobals`. Do not overwrite other settings.
-- If no `appGlobals` key exists, use the Edit tool to add it.
-
-Tell the user: **Tracing is now enabled. The XMLUI engine will collect detailed logs of every interaction.**
+**If it exists**, add `"xsVerbose": true` and `"xsVerboseLogMax": 200` to `appGlobals` (creating the key if needed). Do not overwrite other settings.
 
 ### 5b: Download trace-tools files
-
-Check which files already exist in the project's `xmlui/` directory before downloading.
-
-**Required** — both must be in the same directory:
 
 ```bash
 mkdir -p <project-dir>/xmlui
@@ -139,22 +101,11 @@ curl -fsSL https://raw.githubusercontent.com/xmlui-org/trace-tools/main/xs-diff.
 curl -fsSL https://raw.githubusercontent.com/xmlui-org/trace-tools/main/xmlui-parser.es.js -o <project-dir>/xmlui/xmlui-parser.es.js
 ```
 
-**Optional** — only if the user said yes:
-
-```bash
-curl -fsSL https://raw.githubusercontent.com/xmlui-org/trace-tools/main/xs-trace.js -o <project-dir>/xmlui/xs-trace.js
-```
-
-Tell the user what was downloaded:
-- **xs-diff.html**: the trace viewer — renders interactive timelines of your app's behavior
-- **xmlui-parser.es.js**: the trace parser — processes raw trace data for the viewer
-- **xs-trace.js** (if included): app-level tracing helpers — `xsTrace()` for timing, `xsTraceEvent()` for semantic events
-
 ### 5c: Add the Inspector component to Main.xmlui
 
 Read `Main.xmlui` in the project directory.
 
-**If it already contains `<Inspector`**, tell the user and skip.
+**If it already contains `<Inspector`**, skip.
 
 Otherwise, determine which case applies and use the Edit tool:
 
@@ -189,8 +140,6 @@ Add an `<AppHeader>` with Inspector right after the `<App>` opening tag:
   ...existing content...
 ```
 
-Tell the user: **Added the Inspector component. You'll see a magnifying glass icon in the top right of your app — click it to view traces.**
-
 ---
 
 ## Step 6: Start the dev server
@@ -199,59 +148,8 @@ Tell the user: **Added the Inspector component. You'll see a magnifying glass ic
 cd <project-dir> && "${CLAUDE_PLUGIN_DATA}/bin/xmlui" run
 ```
 
-Tell the user:
+Tell the user: **Open a browser to the indicated port (usually 8080).** You should see a magnifying glass icon in the top right — that's the Inspector. Click it to view traces.
 
-> Your app is running at the URL shown above. Open it in your browser. You should see a magnifying glass icon in the top right — that's the Inspector. Click it to view traces of your app's behavior.
-
-If port 8080 is already in use, `xmlui run` will pick a random port automatically.
-
----
-
-## Step 7: Add project-level CLAUDE.md
-
-Check if `<project-dir>/.claude/CLAUDE.md` exists. If not, create it. If it exists, append to it.
-
-Write the following content (using the Write tool for new files, or Edit tool to append):
-
-```markdown
-# XMLUI Project
-
-This is an XMLUI project. When answering questions about components, layouts, events, theming, or patterns:
-
-1. Use the XMLUI MCP tools — do not guess or search the web:
-   - `xmlui_component_docs` for component API documentation
-   - `xmlui_search` for searching across docs, source, and examples
-   - `xmlui_examples` for working code examples
-   - `xmlui_list_howto` / `xmlui_search_howto` for how-to guides
-
-2. Cite the documentation URLs returned by these tools.
-
-3. If the tools don't have the answer, say so.
-
-Tracing is enabled. The user can export traces from the Inspector (magnifying glass icon) for you to analyze.
-```
-
-Also create `<project-dir>/.claude/` directory if it doesn't exist:
-
-```bash
-mkdir -p <project-dir>/.claude
-```
-
----
-
-## Final message
-
-Once all steps have completed, tell the user:
-
-> **Setup is complete.** You have:
-> - The XMLUI CLI (managed by the plugin)
-> - The XMLUI MCP server (gives Claude access to component docs, examples, and how-tos)
-> - Tracing enabled with the Inspector (click the magnifying glass icon)
-> - A running dev server
-> - A project CLAUDE.md that steers Claude toward using the XMLUI MCP tools
->
-> Try interacting with your app in the browser, then open the Inspector to see what happened. You can also ask Claude to look at traces to help diagnose issues.
-
-If the CLI was just installed in this session (Step 2), add:
+If the CLI was just installed in this session (Step 2), also tell the user:
 
 > **Important:** Restart Claude Code so the XMLUI MCP server becomes active, then come back to this project directory.
