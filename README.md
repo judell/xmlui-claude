@@ -4,7 +4,7 @@ Get a running XMLUI app, an AI assistant that knows the XMLUI docs, and a built-
 
 ## Prerequisites
 
-[Claude Code](https://code.claude.com/docs/en/quickstart).
+[Claude Code](https://code.claude.com/docs/en/quickstart)
 
 ## Add a marketplace
 
