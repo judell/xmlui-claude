@@ -6,10 +6,15 @@ Get a running XMLUI app, an AI assistant that knows the XMLUI docs, and a built-
 
 [Claude Code](https://code.claude.com/docs/en/quickstart).
 
-## Install
+## Add a marketplace
 
 ```
 /plugin marketplace add xmlui-org/xmlui-claude
+```
+
+## Install the XMLUI plugin
+
+```
 /plugin install xmlui@xmlui-claude
 ```
 
