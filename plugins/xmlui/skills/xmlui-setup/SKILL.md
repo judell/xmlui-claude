@@ -68,33 +68,23 @@ If `xmlui@xmlui-claude` is listed, the MCP server should be active after a Claud
 
 ---
 
-## Step 4: Create or choose a project
+## Step 4: Create the weather app
 
-Ask the user: **Do you want to create a new XMLUI project, or set up tracing on an existing project?**
-
-### Option A: Create a new project
-
-List the available templates:
+Check if `xmlui-weather` already exists in the current directory:
 
 ```bash
-"${CLAUDE_PLUGIN_DATA}/bin/xmlui" list-demos
+test -d xmlui-weather && echo "exists" || echo "ok"
 ```
 
-Recommend **`xmlui-weather`** — it's a real app with API calls, state variables, and user input, which gives you something meaningful to trace and work with. The other templates are available if they prefer a different starting point.
-
-Ask the user which template they'd like (default: `xmlui-weather`) and what to name the project directory.
+If it exists, tell the user and ask what they'd like to name the project directory instead. Otherwise, proceed.
 
 Run:
 
 ```bash
-"${CLAUDE_PLUGIN_DATA}/bin/xmlui" new <template> --output <project-name>
+"${CLAUDE_PLUGIN_DATA}/bin/xmlui" new xmlui-weather --output xmlui-weather
 ```
 
 Then proceed to **Step 5** to add tracing.
-
-### Option B: Existing project
-
-Ask the user for the project directory path. Verify it contains a `Main.xmlui` file. Then proceed to **Step 5**.
 
 ---
 
