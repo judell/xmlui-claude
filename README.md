@@ -5,7 +5,7 @@ A Claude Code plugin marketplace for XMLUI development.
 ## Install
 
 ```
-/plugin marketplace add judell/xmlui-claude
+/plugin marketplace add xmlui-org/xmlui-claude
 /plugin install xmlui@xmlui-claude
 ```
 
