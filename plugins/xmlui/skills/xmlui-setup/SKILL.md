@@ -1,6 +1,6 @@
 ---
 name: xmlui-setup
-description: Install the XMLUI CLI, configure the MCP server, download the xmlui-weather app, configure the Inspector, and start the dev server.
+description: Set up a complete XMLUI development environment. Use when the user wants to start XMLUI development, install the XMLUI CLI, configure the MCP server, or create a new XMLUI project.
 disable-model-invocation: true
 allowed-tools: Bash, Read, Edit, Write
 ---
