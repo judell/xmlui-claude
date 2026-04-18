@@ -27,7 +27,7 @@ When prompted for install scope, choose the default: **Install for you (user sco
 Navigate to the directory where you want your project, then:
 
 ```
-/xmlui:xmlui-setup
+/xmlui-setup
 ```
 
 This installs the XMLUI CLI, downloads the `xmlui-weather` app, and starts a dev server. Open a browser to the indicated port (usually 8080).
