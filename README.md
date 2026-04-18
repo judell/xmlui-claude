@@ -1,4 +1,4 @@
-# XMLUI Jumpstart
+# XMLUI Quickstart
 
 Get a running XMLUI app, an AI assistant that knows the XMLUI docs, and a built-in Inspector for debugging — in under 5 minutes.
 
