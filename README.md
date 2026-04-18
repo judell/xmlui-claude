@@ -30,7 +30,7 @@ Navigate to the directory where you want your project, then:
 /xmlui-setup
 ```
 
-This installs the XMLUI CLI, downloads the `xmlui-weather` app, starts a dev server, and loads the app. 
+This installs the XMLUI CLI, downloads the `xmlui-weather` app, starts a dev server, and loads the app.
 
 ## Explore the MCP tools
 
@@ -50,8 +50,12 @@ The weather app includes the Inspector (magnifying glass icon at top right). It 
 
 When it loads, the app makes an API call to fetch weather for Santa Rosa, CA, and displays the data. Click the Inspector and expand the Startup phase to see what happened. This is your distilled view of a much more detailed log. Try switching to another city. Then click Export, and say to Claude: "Read the trace and evaluate what happened."
 
-## Modify the app
+## Modify the layout
 
-You have a running app, an AI that knows about XMLUI, and way for you and the AI to observe the app's behavior. Try making changes. The layout isn't great, ask Claude to vertically center the elements. It will use the MCP tools to find the right way, and preview changes for you to approve. Approve and refresh the browser. Did it work? Great! If not, export a trace and ask Claude to fix whatever went wrong.
+You have a running app, an AI that knows about XMLUI, and way for you and the AI to observe the app's behavior. Try making changes. The layout isn't great, ask Claude to vertically center the elements. It will use the MCP tools to find the right way, and preview changes for you to approve. Approve and refresh the browser. Did it work? Great! If not, tell Claude to look harder for a working example of how to solve this problem.
+
+
+
+
 
 
