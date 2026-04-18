@@ -20,7 +20,7 @@ Get a running XMLUI app, an AI assistant that knows the XMLUI docs, and a built-
 
 When prompted for install scope, choose the default: **Install for you (user scope)**.
 
-Quit Claude Code and restart so it can load the plugin.
+**IMPORTANT** Quit Claude Code and restart so it can load the plugin.
 
 ## Set up
 
