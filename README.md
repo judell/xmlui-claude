@@ -58,7 +58,7 @@ Close Inspector and switch to another city. Then open Inspector again, click Exp
 
 ## Modify the layout
 
-You have a running app, an AI that knows about XMLUI, and way for you and the AI to observe the app's behavior. Try making changes. The layout isn't great, ask Claude to "center the input box and button as group, and center the radio group on a new row". Expect Claude to use the MCP tools to find an answer based on a documented how-to example that provably works. Don't be afraid to challenge Claude to prove its answer and cite evidence. 
+You have a running app, an AI that knows about XMLUI, and a way for you and the AI to observe the app's behavior. Try making changes. The layout isn't great, ask Claude to "center the input box and button as group, and center the radio group on a new row". Expect Claude to use the MCP tools to find an answer based on a documented how-to example that provably works. Don't be afraid to challenge Claude to prove its answer and cite evidence. 
 
 When Claude previews a plausible answer, approve it and refresh the browser. Did it work? Great! If not, capture a screenshot of the botched layout, paste into Claude, and tell it to look harder for an evidence-based solution.
 
