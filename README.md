@@ -54,7 +54,7 @@ Try switching to another city. Then click Export, and say to Claude: "distill an
 
 ## Modify the layout
 
-You have a running app, an AI that knows about XMLUI, and way for you and the AI to observe the app's behavior. Try making changes. The layout isn't great, ask Claude to vertically center the elements. Expect Claude to use the MCP tools to find an answer based on a documented how-to example that provably works. Don't be afraid to challenge Claude to prove its answer and cite evidence. If Claude *can't* find a known working example, it should admit that and cite the best documentation it can find.
+You have a running app, an AI that knows about XMLUI, and way for you and the AI to observe the app's behavior. Try making changes. The layout isn't great, ask Claude to center the input-box/button group and radio group. Expect Claude to use the MCP tools to find an answer based on a documented how-to example that provably works. Don't be afraid to challenge Claude to prove its answer and cite evidence. If Claude *can't* find a known working example, it should admit that and cite the best documentation it can find.
 
 When Claude previews a plausible answer, approve it and refresh the browser. Did it work? Great! If not, tell Claude to look harder for an evidence-based solution.
 
