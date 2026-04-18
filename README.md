@@ -64,7 +64,7 @@ When Claude previews a plausible answer, approve it and refresh the browser. Did
 
 ## Add a feature
 
-Ask Claude to "add a table that reports hourly temperatures for three cities". If things don't work the first time, export a trace so Claude can analyze what went wrong and find a working solution.
+Ask Claude to "add three tables that reports hourly temperatures for three user-specifiable cities". If things go wrong, challenge Claude to cite evidence for its proposed solution. If Claude needs more information about what went wrong, export a trace for it to analyze.
 
 
 
