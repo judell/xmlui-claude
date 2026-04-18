@@ -48,13 +48,13 @@ If you're writing the XMLUI code yourself, you'll search the documentation to fi
 
 ## Use the Inspector
 
-The weather app includes the Inspector (magnifying glass icon at top right). It records traces of everything your app does, so you and Claude can see what's going on.
+The weather app includes the Inspector (magnifying glass icon at top right). It records traces of everything your app does, so you and Claude can see what's going on. 
 
 ### Run the app
 
 When it loads, the app makes an API call to fetch weather for Santa Rosa, CA, and displays the data. Click the Inspector and expand the Startup phase to see what happened. This is your distilled view of a much more detailed log.
 
-Try switching to another city. Then click Export, and say to Claude: "distill and analyze the trace".
+Close Inspector and switch to another city. Then open Inspector again, click Export, and say to Claude: "distill and analyze the trace".
 
 ## Modify the layout
 
