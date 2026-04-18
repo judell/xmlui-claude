@@ -34,7 +34,11 @@ This installs the XMLUI CLI, downloads the `xmlui-weather` app, starts a dev ser
 
 ## Explore the MCP tools
 
-The plugin gives Claude access to the XMLUI documentation via MCP tools. It can ask questions like:
+The plugin gives Claude access to the XMLUI documentation via MCP tools. 
+
+Ask Claude: "What XMLUI MCP tools are available to you?"
+
+It can use these tools to ask questions like:
 
 - How do I paginate a list or table?
 - How do I handle errors in a DataSource?
