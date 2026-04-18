@@ -50,13 +50,13 @@ The weather app includes the Inspector (magnifying glass icon at top right). It 
 
 When it loads, the app makes an API call to fetch weather for Santa Rosa, CA, and displays the data. Click the Inspector and expand the Startup phase to see what happened. This is your distilled view of a much more detailed log.
 
-Try switching to another city. Then click Export, and say to Claude: "distill and analyze the trace"
+Try switching to another city. Then click Export, and say to Claude: "distill and analyze the trace".
 
 ## Modify the layout
 
-You have a running app, an AI that knows about XMLUI, and way for you and the AI to observe the app's behavior. Try making changes. The layout isn't great, ask Claude to center the input-box/button group and radio group. Expect Claude to use the MCP tools to find an answer based on a documented how-to example that provably works. Don't be afraid to challenge Claude to prove its answer and cite evidence. If Claude *can't* find a known working example, it should admit that and cite the best documentation it can find.
+You have a running app, an AI that knows about XMLUI, and way for you and the AI to observe the app's behavior. Try making changes. The layout isn't great, ask Claude to "center the input box and button as group, and center the radio group on a new row". Expect Claude to use the MCP tools to find an answer based on a documented how-to example that provably works. Don't be afraid to challenge Claude to prove its answer and cite evidence. If Claude *can't* find a known working example, it should admit that and cite the best documentation it can find.
 
-When Claude previews a plausible answer, approve it and refresh the browser. Did it work? Great! If not, tell Claude to look harder for an evidence-based solution.
+When Claude previews a plausible answer, approve it and refresh the browser. Did it work? Great! If not, capture a screenshot of the botched layout, paste into Claude, and tell it to look harder for an evidence-based solution.
 
 ## Add a feature
 
