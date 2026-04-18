@@ -64,7 +64,7 @@ When Claude previews a plausible answer, approve it and refresh the browser. Did
 
 ## Add a feature
 
-The `xmlui-weather` app includes the Apache ECharts extension. Ask Claude to build a dashboard that charts hourly temperatures for three cities. If things don't work the first time, export a trace so Claude can analyze what went wrong and find a working solution.
+The `xmlui-weather` app includes the Apache ECharts extension. Ask Claude to add a table that reports hourly temperatures for three cities. If things don't work the first time, export a trace so Claude can analyze what went wrong and find a working solution.
 
 
 
