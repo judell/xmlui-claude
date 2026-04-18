@@ -58,13 +58,13 @@ Try switching to another city. Then click Export, and say to Claude: "distill an
 
 ## Modify the layout
 
-You have a running app, an AI that knows about XMLUI, and way for you and the AI to observe the app's behavior. Try making changes. The layout isn't great, ask Claude to "center the input box and button as group, and center the radio group on a new row". Expect Claude to use the MCP tools to find an answer based on a documented how-to example that provably works. Don't be afraid to challenge Claude to prove its answer and cite evidence. If Claude *can't* find a known working example, it should admit that and cite the best documentation it can find.
+You have a running app, an AI that knows about XMLUI, and way for you and the AI to observe the app's behavior. Try making changes. The layout isn't great, ask Claude to "center the input box and button as group, and center the radio group on a new row". Expect Claude to use the MCP tools to find an answer based on a documented how-to example that provably works. Don't be afraid to challenge Claude to prove its answer and cite evidence. 
 
 When Claude previews a plausible answer, approve it and refresh the browser. Did it work? Great! If not, capture a screenshot of the botched layout, paste into Claude, and tell it to look harder for an evidence-based solution.
 
 ## Add a feature
 
-The `xmlui-weather` app includes the Apache ECharts extension. Ask Claude to add a table that reports hourly temperatures for three cities. If things don't work the first time, export a trace so Claude can analyze what went wrong and find a working solution.
+Ask Claude to add a table that reports hourly temperatures for three cities. If things don't work the first time, export a trace so Claude can analyze what went wrong and find a working solution.
 
 
 
