@@ -50,7 +50,7 @@ The weather app includes the Inspector (magnifying glass icon at top right). It 
 
 When it loads, the app makes an API call to fetch weather for Santa Rosa, CA, and displays the data. Click the Inspector and expand the Startup phase to see what happened. This is your distilled view of a much more detailed log.
 
-Try switching to another city. Then click Export, and say to Claude: "analyze the trace"
+Try switching to another city. Then click Export, and say to Claude: "distill and analyze the trace"
 
 ## Modify the layout
 
